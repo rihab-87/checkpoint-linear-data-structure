@@ -1,0 +1,62 @@
+ALGORITHM sum_distinct_element_hashtable
+VAR
+ hash:HASH_TABLE<INTEGER,INTEGER>
+ st1: ARRAY_OF INTEGER[];
+ st2:ARRAY_OF INTEGER[];
+ n1,n2,count,i,j,sum:INTEGER;
+BEGIN
+// enter the length of set1
+ REPEAT 
+ write('enter the length of set1' );
+ read(n1);
+UNTIL(n1>=1)
+// enter the length of set2
+ REPEAT 
+ write('enter the length of set2' );
+ read(n2);
+UNTIL(n2>=1)
+//enter the elements of set1
+FOR i FROM 0 TO n1-1 STEP 1  DO
+ write('enter the',i ,'element of set1' );
+ read(st1[i]);
+END_FOR
+//enter the elements of set2
+FOR j FROM 0 TO n2-1 STEP 1  DO
+ write('enter the',j ,' element of set2' );
+ read(st2[i]);
+END_FOR
+ // first we browse the set1 to define the count of each element
+   FOR i FROM 0 TO n1-1 STEP 1  DO
+    IF (hash. lookup(st1[i]=true) THEN
+       count:=hash.get(st1[i]);
+        hash.insert(st1[i],count+1);
+       ELSE
+        hash.insert(st1[i],1);
+         
+    END_IF
+   END_FOR
+    // then we browse the set2 to define the count of each element
+   FOR j FROM 0 TO n2-1 STEP 1 DO
+   IF (hash. lookup(st2[j]=true) THEN
+       count:=hash.get(st2[j]);
+        hash.insert(st2[j],count+1);
+       ELSE
+        hash.insert(st2[j],1);
+        
+   END_IF   
+   END_FOR
+   //loop the hash-table and find the sum of the distinct elements of set1 and set2
+ sum=0;
+   FOR i FROM 0 TO n1-1 STEP 1  DO
+      IF (hash.get(st1[i])=1) THEN
+        sum:=sum+st1[i];
+      END_IF
+   END_FOR
+FOR j FROM 0 TO n2-1 STEP 1  DO
+      IF (hash.get(st2[j])=1) THEN
+        sum:=sum+st2[j];
+      END_IF
+   END_FOR
+
+    write('the sum of the distinct element is',sum);
+END

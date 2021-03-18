@@ -1,0 +1,59 @@
+ALGORITHM sum_distinct_element1
+VAR
+  st1: ARRAY_OF INTEGER[];
+  st2:ARRAY_OF INTEGER[];
+  c,n1,n2,i,j,sum:INTEGER;
+
+BEGIN
+  // enter the length of set1
+REPEAT 
+ write('enter the length of set1' );
+ read(n1);
+ UNTIL(n1>=1)
+// enter the length of set2
+REPEAT
+ write('enter the length of set2' );
+ read(n2);
+ UNTIL(n2>=1)
+//enter the elements of set1
+FOR i FROM 0 TO n1-1 STEP 1  DO
+ write('enter the',i ,'element of set1' );
+ read(st1[i]);
+END_FOR
+//enter the elements of set2
+FOR i FROM 0 TO n2-1 STEP 1  DO
+ write('enter the',i ,' element of set2' );
+ read(st2[i]);
+END_FOR
+// find the sum of set1's elements which are distinct of set2's elements 
+  sum=0;
+FOR i FROM 0 TO n1-1 STEP 1  DO
+ c=0;
+    FOR j FROM 0 TO n2-1 STEP 1  DO
+      IF (st1[i]=st2[j]) THEN
+        break;       
+       ELSE
+        c:=c+1;  
+      END_IF   
+    END_FOR
+    IF (c=n2) THEN
+     sum=sum+st1[i];
+    END_IF
+END_FOR
+
+// find the sunm of set2's elements which are distinct of set1's elements 
+ FOR j FROM 0 TO  n2-1 STEP 1  DO
+ c=0;
+    FOR i FROM 0 TO n1-1 STEP 1  DO
+      IF (st2[j]=st1[i]) THEN
+        break;       
+       ELSE
+        c:=c+1;  
+      END_IF   
+    END_FOR
+    IF (c=n1) THEN
+     sum=sum+st2[j];
+    END_IF
+END_FOR
+ write('the sum of the distinct element is',sum);
+END

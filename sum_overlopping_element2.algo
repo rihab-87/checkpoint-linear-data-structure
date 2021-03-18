@@ -1,0 +1,96 @@
+ALGORITHM sum_overlopping_element2.algo
+VAR
+  hash:HASH_TABLE<INTEGER,INTEGER>
+  st1: ARRAY_OF INTEGER[];
+  st2:ARRAY_OF INTEGER[];
+  count,i,j,sum:INTEGER;
+  existe:BOOLEAN;
+BEGIN
+
+   // enter the length of set1
+ REPEAT 
+ write('enter the length of set1' );
+ read(n1);
+ UNTIL(n1>=1)
+
+// enter the length of set2
+ REPEAT
+ write('enter the length of set2' );
+ read(n2);
+ UNTIL(n2>=1)
+
+//enter the elements of set1 which are distincts from each others
+// test each element st1[i] if it exist in st1 or not
+write('enter the element N:0 of st1');
+read(st1[0]);
+FOR i FROM 1 TO n1-1 STEP 1 DO
+ existe=true;
+   WHILE (existe=true) DO
+      write('enter the element N:',i);
+      read(st1[i]);
+      j=0;
+      REPEAT
+        IF (st1[i]=st1[j]) THEN
+         existe:=true;
+        ELSE
+        existe:=false;
+        END_IF
+        j:=j+1;
+      UNTIL (existe=true || j=i-1)
+   END_WHILE
+END_FOR
+
+
+//enter the elements of set2 which are distincts from each others
+// test each element st2[i] if it exist in st2 or not 
+write('enter the element N:0 of st2');
+read(st2[0]);
+FOR i FROM 1 TO n2-1 STEP 1 DO
+ existe=true;
+   WHILE (existe=true) DO
+      write('enter the element N:',i);
+      read(st2[i]);
+      j=0;
+      REPEAT
+        IF (st2[i]=st2[j]) THEN
+         existe:=true;
+        ELSE
+        existe:=false;
+        END_IF
+        j:=j+1;
+      UNTIL (existe=true || j=i-1)
+   END_WHILE
+END_FOR
+
+
+//  first we browse the set1 to define the count of each element
+ FOR i FROM 0 TO n1-1 STEP 1  DO
+    IF (hash. lookup(st1[i]=true) THEN
+       count:=hash.get(st1[i]);
+       hash.insert(st1[i],count+1);
+       ELSE
+       hash.insert(st1[i],1);    
+      END_IF
+   END_FOR
+
+   //  then  we browse the set2 to define the count of each element
+   FOR j FROM 0 TO n2-1 STEP 1 DO
+     IF (hash. lookup(st2[j]=true) THEN
+       count:=hash.get(st2[j]);
+       hash.insert(st2[j],count+1);
+       ELSE
+        hash.insert(st2[j],1);
+      END_IF   
+   END_FOR
+
+   //loop the hash-table and find the sum of the overlopping elements of set1 and set2
+ sum=0;
+   FOR i FROM 0 TO n1-1 STEP 1  DO
+      IF (hash.get(st1[i])=2) THEN
+        sum:=sum+2*st1[i];
+      END_IF
+   END_FOR
+  
+    write('the sum of the distinct element is',sum);
+
+END
