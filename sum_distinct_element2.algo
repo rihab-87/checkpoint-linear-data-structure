@@ -23,11 +23,11 @@ END_FOR
 //enter the elements of set2
 FOR j FROM 0 TO n2-1 STEP 1  DO
  write('enter the',j ,' element of set2' );
- read(st2[i]);
+ read(st2[j]);
 END_FOR
  // first we browse the set1 to define the count of each element
    FOR i FROM 0 TO n1-1 STEP 1  DO
-    IF (hash. lookup(st1[i]=true) THEN
+    IF (hash. lookup(st1[i]=true)) THEN
        count:=hash.get(st1[i]);
         hash.insert(st1[i],count+1);
        ELSE
@@ -37,7 +37,7 @@ END_FOR
    END_FOR
     // then we browse the set2 to define the count of each element
    FOR j FROM 0 TO n2-1 STEP 1 DO
-   IF (hash. lookup(st2[j]=true) THEN
+   IF (hash. lookup(st2[j]=true)) THEN
        count:=hash.get(st2[j]);
         hash.insert(st2[j],count+1);
        ELSE

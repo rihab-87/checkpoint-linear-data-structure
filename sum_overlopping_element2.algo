@@ -36,7 +36,7 @@ FOR i FROM 1 TO n1-1 STEP 1 DO
         existe:=false;
         END_IF
         j:=j+1;
-      UNTIL (existe=true || j=i-1)
+      UNTIL (existe=true OR j=i-1)
    END_WHILE
 END_FOR
 
@@ -58,14 +58,14 @@ FOR i FROM 1 TO n2-1 STEP 1 DO
         existe:=false;
         END_IF
         j:=j+1;
-      UNTIL (existe=true || j=i-1)
+      UNTIL (existe=true OR j=i-1)
    END_WHILE
 END_FOR
 
 
 //  first we browse the set1 to define the count of each element
  FOR i FROM 0 TO n1-1 STEP 1  DO
-    IF (hash. lookup(st1[i]=true) THEN
+    IF (hash. lookup(st1[i]=true)) THEN
        count:=hash.get(st1[i]);
        hash.insert(st1[i],count+1);
        ELSE
@@ -75,7 +75,7 @@ END_FOR
 
    //  then  we browse the set2 to define the count of each element
    FOR j FROM 0 TO n2-1 STEP 1 DO
-     IF (hash. lookup(st2[j]=true) THEN
+     IF (hash. lookup(st2[j]=true)) THEN
        count:=hash.get(st2[j]);
        hash.insert(st2[j],count+1);
        ELSE

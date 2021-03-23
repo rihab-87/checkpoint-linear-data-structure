@@ -34,7 +34,7 @@ FOR i FROM 1 TO n1-1 STEP 1 DO
         existe:=false;
         END_IF
         j:=j+1;
-      UNTIL (existe=true || j=i-1)
+      UNTIL (existe=true OR j=i-1)
    END_WHILE
 END_FOR
 
@@ -56,7 +56,7 @@ FOR i FROM 1 TO n2-1 STEP 1 DO
         existe:=false;
         END_IF
         j:=j+1;
-      UNTIL (existe=true || j=i-1)
+      UNTIL (existe=true OR j=i-1)
    END_WHILE
 END_FOR
 
